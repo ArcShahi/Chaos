@@ -28,21 +28,21 @@ You can Download a Playable `.exe` for x64 here :https://www.mediafire.com/file/
 
 ## Controls:
 
-**Move left : A
+**Move left : A**
 
-Move Right : D
+**Move Right : D**
 
-Move Up : W
+**Move Up : W**
 
-Move Down : S
+**Move Down : S
+**
+**Move left Diagonally : A + W**
 
-Move left Diagonally : A + W
+**Move right Diagonally : D + W**
 
-Move right Diagonally : D + W
+**Shoot : Space**
 
-Shoot : Space
-
-Fire Missile : M**
+**Fire Missile : M**
 
 
 ## Things to be Added Later :

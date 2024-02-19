@@ -14,7 +14,9 @@ And thanks to the SFML community for providing awesome textures to use.
 
 ### Here's few Screenshot of the Game :
 
-You can Download a Playable `.exe` for x64 here :
+You can Download a Playable `.exe` for x64 here :https://www.mediafire.com/file/pc4s0lbh5hfzk1n/Chaos.zip/file
+
+
 
 ![image](https://github.com/ArcShahi/Chaos/assets/90377780/45383e8a-e57a-439c-9580-5a105f4db0e7)
 

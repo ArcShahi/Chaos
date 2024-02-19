@@ -45,6 +45,8 @@ You can Download a Playable `.exe` for x64 here :https://www.mediafire.com/file/
 **Fire Missile : M**
 
 
+You can also Costumize your controls in the Settings panel.
+
 ## Things to be Added Later :
 
 - Levels

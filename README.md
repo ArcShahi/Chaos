@@ -35,8 +35,8 @@ You can Download a Playable `.exe` for x64 here :https://www.mediafire.com/file/
 
 **Move Up : W**
 
-**Move Down : S
-**
+**Move Down : S**
+
 **Move left Diagonally : A + W**
 
 **Move right Diagonally : D + W**

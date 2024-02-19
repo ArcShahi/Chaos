@@ -1,0 +1,180 @@
+#include "Utility.hpp"
+#include "Animation.hpp"
+
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Text.hpp>
+
+#include <random>
+#include <cmath>
+#include <ctime>
+#include <cassert>
+
+
+namespace
+{
+	std::default_random_engine createRandomEngine()
+	{
+		auto seed = static_cast<unsigned long>(std::time(nullptr));
+		return std::default_random_engine(seed);
+	}
+
+	auto RandomEngine = createRandomEngine();
+}
+
+std::string toString(sf::Keyboard::Key key)
+{
+	#define HEADERS_KEYTOSTRING_CASE(KEY) case sf::Keyboard::KEY: return #KEY;
+
+	switch (key)
+	{
+		HEADERS_KEYTOSTRING_CASE(Unknown)
+		HEADERS_KEYTOSTRING_CASE(A)
+		HEADERS_KEYTOSTRING_CASE(B)
+		HEADERS_KEYTOSTRING_CASE(C)
+		HEADERS_KEYTOSTRING_CASE(D)
+		HEADERS_KEYTOSTRING_CASE(E)
+		HEADERS_KEYTOSTRING_CASE(F)
+		HEADERS_KEYTOSTRING_CASE(G)
+		HEADERS_KEYTOSTRING_CASE(H)
+		HEADERS_KEYTOSTRING_CASE(I)
+		HEADERS_KEYTOSTRING_CASE(J)
+		HEADERS_KEYTOSTRING_CASE(K)
+		HEADERS_KEYTOSTRING_CASE(L)
+		HEADERS_KEYTOSTRING_CASE(M)
+		HEADERS_KEYTOSTRING_CASE(N)
+		HEADERS_KEYTOSTRING_CASE(O)
+		HEADERS_KEYTOSTRING_CASE(P)
+		HEADERS_KEYTOSTRING_CASE(Q)
+		HEADERS_KEYTOSTRING_CASE(R)
+		HEADERS_KEYTOSTRING_CASE(S)
+		HEADERS_KEYTOSTRING_CASE(T)
+		HEADERS_KEYTOSTRING_CASE(U)
+		HEADERS_KEYTOSTRING_CASE(V)
+		HEADERS_KEYTOSTRING_CASE(W)
+		HEADERS_KEYTOSTRING_CASE(X)
+		HEADERS_KEYTOSTRING_CASE(Y)
+		HEADERS_KEYTOSTRING_CASE(Z)
+		HEADERS_KEYTOSTRING_CASE(Num0)
+		HEADERS_KEYTOSTRING_CASE(Num1)
+		HEADERS_KEYTOSTRING_CASE(Num2)
+		HEADERS_KEYTOSTRING_CASE(Num3)
+		HEADERS_KEYTOSTRING_CASE(Num4)
+		HEADERS_KEYTOSTRING_CASE(Num5)
+		HEADERS_KEYTOSTRING_CASE(Num6)
+		HEADERS_KEYTOSTRING_CASE(Num7)
+		HEADERS_KEYTOSTRING_CASE(Num8)
+		HEADERS_KEYTOSTRING_CASE(Num9)
+		HEADERS_KEYTOSTRING_CASE(Escape)
+		HEADERS_KEYTOSTRING_CASE(LControl)
+		HEADERS_KEYTOSTRING_CASE(LShift)
+		HEADERS_KEYTOSTRING_CASE(LAlt)
+		HEADERS_KEYTOSTRING_CASE(LSystem)
+		HEADERS_KEYTOSTRING_CASE(RControl)
+		HEADERS_KEYTOSTRING_CASE(RShift)
+		HEADERS_KEYTOSTRING_CASE(RAlt)
+		HEADERS_KEYTOSTRING_CASE(RSystem)
+		HEADERS_KEYTOSTRING_CASE(Menu)
+		HEADERS_KEYTOSTRING_CASE(LBracket)
+		HEADERS_KEYTOSTRING_CASE(RBracket)
+		HEADERS_KEYTOSTRING_CASE(SemiColon)
+		HEADERS_KEYTOSTRING_CASE(Comma)
+		HEADERS_KEYTOSTRING_CASE(Period)
+		HEADERS_KEYTOSTRING_CASE(Quote)
+		HEADERS_KEYTOSTRING_CASE(Slash)
+		HEADERS_KEYTOSTRING_CASE(BackSlash)
+		HEADERS_KEYTOSTRING_CASE(Tilde)
+		HEADERS_KEYTOSTRING_CASE(Equal)
+		HEADERS_KEYTOSTRING_CASE(Dash)
+		HEADERS_KEYTOSTRING_CASE(Space)
+		HEADERS_KEYTOSTRING_CASE(Return)
+		HEADERS_KEYTOSTRING_CASE(BackSpace)
+		HEADERS_KEYTOSTRING_CASE(Tab)
+		HEADERS_KEYTOSTRING_CASE(PageUp)
+		HEADERS_KEYTOSTRING_CASE(PageDown)
+		HEADERS_KEYTOSTRING_CASE(End)
+		HEADERS_KEYTOSTRING_CASE(Home)
+		HEADERS_KEYTOSTRING_CASE(Insert)
+		HEADERS_KEYTOSTRING_CASE(Delete)
+		HEADERS_KEYTOSTRING_CASE(Add)
+		HEADERS_KEYTOSTRING_CASE(Subtract)
+		HEADERS_KEYTOSTRING_CASE(Multiply)
+		HEADERS_KEYTOSTRING_CASE(Divide)
+		HEADERS_KEYTOSTRING_CASE(Left)
+		HEADERS_KEYTOSTRING_CASE(Right)
+		HEADERS_KEYTOSTRING_CASE(Up)
+		HEADERS_KEYTOSTRING_CASE(Down)
+		HEADERS_KEYTOSTRING_CASE(Numpad0)
+		HEADERS_KEYTOSTRING_CASE(Numpad1)
+		HEADERS_KEYTOSTRING_CASE(Numpad2)
+		HEADERS_KEYTOSTRING_CASE(Numpad3)
+		HEADERS_KEYTOSTRING_CASE(Numpad4)
+		HEADERS_KEYTOSTRING_CASE(Numpad5)
+		HEADERS_KEYTOSTRING_CASE(Numpad6)
+		HEADERS_KEYTOSTRING_CASE(Numpad7)
+		HEADERS_KEYTOSTRING_CASE(Numpad8)
+		HEADERS_KEYTOSTRING_CASE(Numpad9)
+		HEADERS_KEYTOSTRING_CASE(F1)
+		HEADERS_KEYTOSTRING_CASE(F2)
+		HEADERS_KEYTOSTRING_CASE(F3)
+		HEADERS_KEYTOSTRING_CASE(F4)
+		HEADERS_KEYTOSTRING_CASE(F5)
+		HEADERS_KEYTOSTRING_CASE(F6)
+		HEADERS_KEYTOSTRING_CASE(F7)
+		HEADERS_KEYTOSTRING_CASE(F8)
+		HEADERS_KEYTOSTRING_CASE(F9)
+		HEADERS_KEYTOSTRING_CASE(F10)
+		HEADERS_KEYTOSTRING_CASE(F11)
+		HEADERS_KEYTOSTRING_CASE(F12)
+		HEADERS_KEYTOSTRING_CASE(F13)
+		HEADERS_KEYTOSTRING_CASE(F14)
+		HEADERS_KEYTOSTRING_CASE(F15)
+		HEADERS_KEYTOSTRING_CASE(Pause)
+	}
+
+	return "";
+}
+
+void centerOrigin(sf::Sprite& sprite)
+{
+	sf::FloatRect bounds = sprite.getLocalBounds();
+	sprite.setOrigin(std::floor(bounds.left + bounds.width / 2.f), std::floor(bounds.top + bounds.height / 2.f));
+}
+
+void centerOrigin(sf::Text& text)
+{
+	sf::FloatRect bounds = text.getLocalBounds();
+	text.setOrigin(std::floor(bounds.left + bounds.width / 2.f), std::floor(bounds.top + bounds.height / 2.f));
+}
+
+void centerOrigin(Animation& animation)
+{
+	sf::FloatRect bounds = animation.getLocalBounds();
+	animation.setOrigin(std::floor(bounds.left + bounds.width / 2.f), std::floor(bounds.top + bounds.height / 2.f));
+}
+
+float toDegree(float radian)
+{
+	return 180.f / 3.141592653589793238462643383f * radian;
+}
+
+float toRadian(float degree)
+{
+	return 3.141592653589793238462643383f / 180.f * degree;
+}
+
+int randomInt(int exclusiveMax)
+{
+	std::uniform_int_distribution<> distr(0, exclusiveMax - 1);
+	return distr(RandomEngine);
+}
+
+float length(sf::Vector2f vector)
+{
+	return std::sqrt(vector.x * vector.x + vector.y * vector.y);
+}
+
+sf::Vector2f unitVector(sf::Vector2f vector)
+{
+	assert(vector != sf::Vector2f(0.f, 0.f));
+	return vector / length(vector);
+}

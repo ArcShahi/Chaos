@@ -5,7 +5,7 @@ In Development Prototype ...
 
 ### First of All 
 
-I would like to point out that this entire project wouldn't have possible without **SFML Game Development book** which is an awesome Reference book which teaches so much stuff. 
+I would like to point out that this entire project wouldn't have been possible without **SFML Game Development book** which is an awesome Reference book which teaches so much stuff. 
 
 
 Now This Prototype game was just a way for me to get Familiar with the SFML API ,  there's so much stuff for me to learn.  Once I've acquried a bit more knowledge, I'll keep on building and adding stuff in this game.  I've to learn so much stuff Like **Modern C++ , Maths , Drawing , many Game Dev techniques , Optimization , Code Oraganization** ..... It's gonna be a long Journey. Currently I had to look so much stuff to make stuff work.  Anyways... I somehow managed to write more than 5000+ lines of code...
